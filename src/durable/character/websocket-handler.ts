@@ -13,10 +13,12 @@ export class WebSocketHandler {
         private readonly messageValidator: MessageValidator,
     ) { }
 
-    async handleWebSocket(req: Request) {
+    async handleWebSocket(req: Request, ctx: DurableObjectState) {
         try {
             const websocketPair = new WebSocketPair();
             const [client, server] = Object.values(websocketPair);
+
+            ctx.acceptWebSocket(server);
 
             const connectionData = this.sessionManager.createConnectionData(req);
             this.sessionManager.addSession(server, connectionData);

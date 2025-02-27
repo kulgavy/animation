@@ -47,7 +47,7 @@ export class CharacterObject extends DurableObject<CloudflareBindings> {
         await this.logger.log(CharacterObject.name, "Handling request");
         try {
             if (req.headers.get("Upgrade") === "websocket") {
-                return this.webSocketHandler.handleWebSocket(req);
+                return this.webSocketHandler.handleWebSocket(req,this.ctx);
             }
 
             return new Response(JSON.stringify({ error: "Not Found" }), {

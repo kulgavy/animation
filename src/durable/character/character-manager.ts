@@ -14,12 +14,12 @@ export class CharacterManager {
     ) { }
 
     async initialize() {
-        await this.logger.log('CharacterManager', "Initializing predefined characters...");
+        await this.logger.log(CharacterManager.name, "Initializing predefined characters...");
         const storedCharacters = await this.ctx.storage.list<Character>();
-        await this.logger.log('CharacterManager', `Stored characters: ${JSON.stringify(storedCharacters)}`);
+        await this.logger.log(CharacterManager.name, `Stored characters: ${JSON.stringify(storedCharacters)}`);
 
         if (!storedCharacters.size) {
-            await this.logger.log('CharacterManager', "No stored characters found. Initializing predefined characters...");
+            await this.logger.log(CharacterManager.name, "No stored characters found. Initializing predefined characters...");
             const predefinedCharacters = PREDEFINED_CHARACTERS;
             await this.ctx.storage.put(predefinedCharacters, { noCache: true });
             this.characters = predefinedCharacters;
@@ -27,7 +27,7 @@ export class CharacterManager {
             this.characters = Object.fromEntries(storedCharacters);
         }
 
-        await this.logger.log('CharacterManager', "Characters initialized");
+        await this.logger.log(CharacterManager.name, "Characters initialized");
     }
 
     async handleCommand(command: Command, payload: any) {
@@ -138,7 +138,7 @@ export class CharacterManager {
     private async updateCharacter(id: string, payload: Partial<CharacterUpdatePayload>): Promise<Nullable<Character>> {
         const character = this.characters[id];
         if (!character) {
-            await this.logger.error('CharacterManager', `Character ${id} not found`);
+            await this.logger.error(CharacterManager.name, `Character ${id} not found`);
             return null;
         }
 
@@ -149,10 +149,10 @@ export class CharacterManager {
                 this.ctx.storage.put(id, updatedCharacter, { noCache: true }),
                 this.characterHistory.addHistoryEntry(id, payload)
             ]);
-            await this.logger.log('CharacterManager', `Character ${id} updated: ${JSON.stringify(updatedCharacter)}`);
+            await this.logger.log(CharacterManager.name, `Character ${id} updated: ${JSON.stringify(updatedCharacter)}`);
             return updatedCharacter;
         } catch (error) {
-            await this.logger.error('CharacterManager', `Failed to update character ${id}: ${error}`);
+            await this.logger.error(CharacterManager.name, `Failed to update character ${id}: ${error}`);
             return character;
         }
     }
