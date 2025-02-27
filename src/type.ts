@@ -5,3 +5,10 @@ export type Variables = {
 }
 
 export type Nullable<T> = T | null | undefined;
+
+export type ApiResponse<T> = {
+    success: boolean;
+    data?: T;
+    message?: string;
+    error?: string;
+};

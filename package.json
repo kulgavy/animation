@@ -1,22 +1,30 @@
 {
-	"name": "animation-test",
-	"scripts": {
-		"dev": "wrangler dev",
-		"deploy": "wrangler deploy --minify",
-		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
-		"prisma:generate": "npx prisma generate",
-		"migration:apply:local": "npx wrangler d1 migrations apply animation-db --local",
-		"migration:apply:remote": "npx wrangler d1 migrations apply animation-db --remote"
-	},
-	"dependencies": {
-		"@fiberplane/hono-otel": "^0.7.0",
-		"@hono/zod-validator": "^0.4.3",
-		"@prisma/adapter-d1": "^6.4.1",
-		"@prisma/client": "^6.4.1",
-		"hono": "^4.7.2"
-	},
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250214.0",
-		"wrangler": "^3.109.2"
-	}
+  "name": "animation-test",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "prisma:generate": "npx prisma generate",
+    "migration:apply:local": "npx wrangler d1 migrations apply animation-db --local",
+    "migration:apply:remote": "npx wrangler d1 migrations apply animation-db --remote",
+    "lint": "eslint src/**/*.ts --no-warn-ignored",
+    "lint:fix": "eslint src/**/*.ts --fix --no-warn-ignored"
+  },
+  "dependencies": {
+    "@fiberplane/hono-otel": "^0.7.0",
+    "@hono/zod-validator": "^0.4.3",
+    "@prisma/adapter-d1": "^6.4.1",
+    "@prisma/client": "^6.4.1",
+    "hono": "^4.7.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.2",
+    "wrangler": "^3.109.2"
+  }
 }

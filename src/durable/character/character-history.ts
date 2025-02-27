@@ -1,5 +1,5 @@
-import {Character, CharacterHistoryEntry} from "./type";
 import {HISTORY_PREFIX} from "./constant";
+import {Character, CharacterHistoryEntry} from "./type";
 
 export class CharacterHistory {
     private readonly kvNamespace: KVNamespace;
