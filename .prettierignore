@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+coverage
+.wrangler
+.git
+*.d.ts
+package-lock.json
+yarn.lock
+bun.lockb 

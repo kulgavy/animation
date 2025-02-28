@@ -1,55 +1,60 @@
-import {Command} from "./constant";
-
-export type Position = {
-    x: number;
-    y: number;
-    z: number;
-};
-
-export type Character = {
-    id: string;
-    position: Position;
-    rotation: number;
-    isActive: boolean;
-};
-
-export type CharacterUpdatePayload ={
-    position: Position,
-    rotation: number;
-    isActive: boolean;
-}
+import { Command } from './constant';
 
 export interface StartPayload {
-    id: string;
+  characterId: string;
 }
 
 export interface StopPayload {
-    id: string;
+  characterId: string;
 }
 
 export interface RotatePayload {
-    id: string;
-    rotation: number;
+  characterId: string;
+  rotation: number;
 }
 
 export interface MovePayload {
-    id: string;
-    position: Position;
+  characterId: string;
+  position: { x: number; y: number; z: number };
 }
 
 export interface ResetPayload {
-    id: string;
+  characterId: string;
 }
 
-export type WebSocketMessage =
-    | { command: Command.START; payload: StartPayload }
-    | { command: Command.STOP; payload: StopPayload }
-    | { command: Command.ROTATE; payload: RotatePayload }
-    | { command: Command.MOVE; payload: MovePayload }
-    | { command: Command.RESET; payload: ResetPayload }
+export type CommandPayload =
+  | StartPayload
+  | StopPayload
+  | RotatePayload
+  | MovePayload
+  | ResetPayload;
+
+export interface WebSocketMessage {
+  command: Command;
+  payload: CommandPayload;
+}
+
+export interface Character {
+  id: string;
+  position: { x: number; y: number; z: number };
+  rotation: number;
+  isActive: boolean;
+}
+
+export type Position = {
+  x: number;
+  y: number;
+  z: number;
+};
+
+export type CharacterUpdatePayload = {
+  position: Position;
+  rotation: number;
+  isActive: boolean;
+};
 
 export interface CharacterHistoryEntry {
-    id: string;
-    timestamp: string;
-    data: Partial<Character>;
+  id: string;
+  timestamp: string;
+  data: Partial<Character>;
 }

@@ -7,8 +7,10 @@
     "prisma:generate": "npx prisma generate",
     "migration:apply:local": "npx wrangler d1 migrations apply animation-db --local",
     "migration:apply:remote": "npx wrangler d1 migrations apply animation-db --remote",
-    "lint": "eslint src/**/*.ts --no-warn-ignored",
-    "lint:fix": "eslint src/**/*.ts --fix --no-warn-ignored"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\""
   },
   "dependencies": {
     "@fiberplane/hono-otel": "^0.7.0",
