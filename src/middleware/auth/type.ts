@@ -1,8 +1,8 @@
-import {UserType} from "../../user/constant";
+import { UserType } from '../../user/constant';
 
 export type UserPayload = {
-    id: string;
-    name: string;
-    email: string;
-    type: UserType;
+  id: string;
+  name: string;
+  email: string;
+  type: UserType;
 };

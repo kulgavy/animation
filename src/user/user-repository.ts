@@ -1,28 +1,28 @@
-import {Nullable} from "../type";
-import {PrismaClient, User} from '@prisma/client'
+import { Nullable } from '../type';
+import { PrismaClient, User } from '@prisma/client';
 
 class UserRepository {
-    private readonly prismaClient: PrismaClient;
+  private readonly prismaClient: PrismaClient;
 
-    constructor(prisma: PrismaClient) {
-        this.prismaClient = prisma
-    }
+  constructor(prisma: PrismaClient) {
+    this.prismaClient = prisma;
+  }
 
-    async findById(id: string): Promise<Nullable<User>> {
-        return this.prismaClient.user.findUnique({
-            where:{
-                id
-            }
-        })
-    }
+  async findById(id: string): Promise<Nullable<User>> {
+    return this.prismaClient.user.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
 
-    async findByEmail(email: string): Promise<Nullable<User>> {
-        return this.prismaClient.user.findUnique({
-            where:{
-                email
-            }
-        })
-    }
+  async findByEmail(email: string): Promise<Nullable<User>> {
+    return this.prismaClient.user.findUnique({
+      where: {
+        email,
+      },
+    });
+  }
 }
 
 export default UserRepository;
