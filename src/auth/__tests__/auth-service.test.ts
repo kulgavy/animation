@@ -1,11 +1,13 @@
 import { describe, expect, test, beforeEach, spyOn, mock, Mock } from 'bun:test';
+import type { Bindings as CloudflareBindings } from 'hono/types';
+import type { KVNamespace } from '@cloudflare/workers-types';
 import AuthService from '../auth-service';
 import { PrismaClient } from '@prisma/client';
 import { UserType } from '../../user/constant';
 import UserService from '../../user/user-service';
 import { Logger } from '../../logger/logger';
 
-const getMockCalls = <T>(fn: Mock<T>) => fn.mock.calls;
+const getMockCalls = (fn: any) => (fn as Mock<(...args: any[]) => any>).mock.calls;
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -30,10 +32,10 @@ describe('AuthService', () => {
     }),
   };
 
-  const mockEnv: Partial<CloudflareBindings> = {
+  const mockEnv = {
     JWT_SECRET: 'test-secret',
     CHARACTER_LOGS: mockKV,
-  };
+  } satisfies Partial<CloudflareBindings>;
 
   beforeEach(() => {
     mockPrisma = {} as PrismaClient;
@@ -56,8 +58,8 @@ describe('AuthService', () => {
     test('should return null when user is not found', async () => {
       const email = 'nonexistent@example.com';
       const password = 'password123';
-      (mockUserService.getUserByEmail as Mock<typeof mockUserService.getUserByEmail>) = mock(() =>
-        Promise.resolve(null),
+      (mockUserService.getUserByEmail as Mock<typeof UserService.prototype.getUserByEmail>) = mock(
+        () => Promise.resolve(null),
       );
 
       const result = await authService.login(email, password);
