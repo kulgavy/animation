@@ -10,7 +10,7 @@ import {
   StopPayload,
 } from './type';
 import { Command, PREDEFINED_CHARACTERS } from './constant';
-import { Nullable } from '../../type';
+import { Nullable } from '../../types/basic-type';
 import { CommandPayload } from './type';
 
 export class CharacterManager {

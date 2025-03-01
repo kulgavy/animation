@@ -1,5 +1,5 @@
 import { sign } from 'hono/jwt';
-import { Nullable } from '../type';
+import { Nullable } from '../types/basic-type';
 import UserService from '../user/user-service';
 import { UserPayload } from '../middleware/auth/type';
 import { SIGNATURE_ALGORITHM, TOKEN_EXPIRATION_DAYS } from './constant';

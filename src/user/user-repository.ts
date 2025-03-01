@@ -1,4 +1,4 @@
-import { Nullable } from '../type';
+import { Nullable } from '../types/basic-type';
 import { PrismaClient, User } from '@prisma/client';
 
 class UserRepository {

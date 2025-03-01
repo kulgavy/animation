@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { authMiddleware } from './middleware/auth';
-import { ApiResponse, Variables } from './type';
+import { ApiResponse, Variables } from './types/basic-type';
 import AuthService from './auth/auth-service';
 import { logger } from 'hono/logger';
 import prismaClients from '../prisma/client';

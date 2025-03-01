@@ -1,6 +1,6 @@
 import { verify } from 'hono/jwt';
 import { createMiddleware } from 'hono/factory';
-import { Variables } from '../../type';
+import { Variables } from '../../types/basic-type';
 import { UserPayload } from './type';
 import { SIGNATURE_ALGORITHM } from '../../auth/constant';
 import { UserType } from '../../user/constant';

@@ -9,8 +9,12 @@ export class Logger {
     const timestamp = new Date().toISOString();
     const logMessage = `[${timestamp}] [${level.toUpperCase()}] ${message}`;
 
-    // Console log
-    console.log(logMessage);
+    // Console log based on level
+    if (level === 'error') {
+      console.error(logMessage);
+    } else {
+      console.warn(logMessage);
+    }
 
     // Store in KV with timestamp-based key
     const kvKey = `${className}-${Date.now()}`;

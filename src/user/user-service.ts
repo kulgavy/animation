@@ -1,5 +1,5 @@
 import UserRepository from './user-repository'; // assuming you have this imported
-import { Nullable } from '../type';
+import { Nullable } from '../types/basic-type';
 import { PrismaClient, User } from '@prisma/client';
 
 class UserService {

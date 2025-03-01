@@ -1,4 +1,4 @@
-import { UserPayload } from './middleware/auth/type';
+import { UserPayload } from '../middleware/auth/type';
 
 export type Variables = {
   user: UserPayload;

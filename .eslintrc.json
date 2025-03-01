@@ -12,7 +12,10 @@
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": "./tsconfig.json"
+        "project": [
+            "./tsconfig.json",
+            "./tsconfig.test.json"
+        ]
     },
     "plugins": [
         "@typescript-eslint",
@@ -36,6 +39,14 @@
                 "allowTernary": true
             }
         ],
-        "no-console": "warn"
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error"
+                ]
+            }
+        ]
     }
 }
