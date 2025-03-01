@@ -25,6 +25,12 @@ jobs:
       - name: Run Tests
         run: bun test
 
+      - name: Set JWT Secret in Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        run: bunx wrangler secret put JWT_SECRET <<< "$JWT_SECRET"
+
       - name: Publish to Cloudflare
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
